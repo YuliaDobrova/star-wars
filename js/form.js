@@ -26,13 +26,17 @@ function sendUserInfo(e) {
   e.preventDefault();
   const formData = new FormData(form);
 
-  //   openSuccessModal();
-
   fetch("/", {
     method: "POST",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body: new URLSearchParams(formData).toString(),
-  }).then(openSuccessModal);
+  })
+    // .then(openSuccessModal);
+    .then(() => {
+      openSuccessModal();
+      console.log("Form successfully submitted");
+    })
+    .catch((error) => alert(error));
 }
 
 callFormBtn.addEventListener("click", function () {
